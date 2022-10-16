@@ -5,8 +5,8 @@ from accounts.models import User
 
 # Create your models here.
 class QRCode(models.Model):
-    created_at = models.DataField(default=timezone.now)
-    name = models.CharField(max_length="50")
+    created_at = models.DateField(default=timezone.now)
+    name = models.CharField(max_length=50)
     qrcode_images = models.FileField(upload_to='qrcode_image/')
     user = models.ForeignKey(
         User, on_delete=models.CASCADE
