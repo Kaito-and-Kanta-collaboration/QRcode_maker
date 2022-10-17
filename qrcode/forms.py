@@ -13,6 +13,7 @@ class CreateQRCodeForm(forms.ModelForm):
         'type': 'test',
         'aria-label': '.form-control-lg',
         }))
+        
     name = forms.CharField(
         widget=forms.TextInput(attrs={
         'class': 'form-control', 

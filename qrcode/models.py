@@ -1,10 +1,9 @@
-from email.policy import default
 from django.db import models
 from django.utils import timezone
 
 from accounts.models import User
 
-# Create your models here.
+
 class QRCode(models.Model):
     created_at = models.DateField(default=timezone.now)
     name = models.CharField(max_length=50)

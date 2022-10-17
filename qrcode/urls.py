@@ -7,5 +7,5 @@ from . import views
 app_name = 'qrcode'
 
 urlpatterns = [
-    path('', views.create_and_show_qrcode_view, name='create_and_show_qrcode'),
+    path('', views.create_and_show_qrcode_view, name='home'),
 ]
