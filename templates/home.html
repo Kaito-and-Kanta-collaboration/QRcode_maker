@@ -17,14 +17,14 @@
 
                 {% if user.is_authenticated %}
                 <!-- URLかMessageを入力　-->
-                <div class="form-floating">
+                <div class="form-floating mb-3">
                     {{ create_qrcode_form.url_or_message }}
                     <label for="floatingInput">Enter URL or Message</label>
                 </div>
                 {{ create_qrcode_form.url_or_message.errors }}
 
                 <!-- QRCodeのName入力 -->
-                <div class="form-floating">
+                <div class="form-floating mb-5">
                     {{ create_qrcode_form.name }}
                     <label for="floatingPassword">Enter QRCode name</label>
                 </div>
@@ -32,7 +32,7 @@
 
                 {% else %}
                 <!-- URLかMessageを入力　-->
-                <div class="form-floating">
+                <div class="form-floating mb-3">
                     <input class="form-control form-control-lg" type="text" placeholder="Enter QRCode or Message" aria-label=".form-control-lg" disabled>
                     <label for="floatingInput">Enter URL or Message</label>
                 </div>
