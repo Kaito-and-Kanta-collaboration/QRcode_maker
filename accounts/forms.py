@@ -9,8 +9,8 @@ User = get_user_model()
 
 
 class UserCreationForm(forms.ModelForm):
-    password = forms.CharField(label='パスワード', widget=forms.PasswordInput())
-    confirm_password = forms.CharField(label='確認パスワード', widget=forms.PasswordInput())
+    password = forms.CharField(label='password', widget=forms.PasswordInput())
+    confirm_password = forms.CharField(label='confirm password', widget=forms.PasswordInput())
 
     class Meta:
         model = User 
@@ -21,7 +21,7 @@ class UserCreationForm(forms.ModelForm):
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
         if password != confirm_password:
-            raise ValidationError('パスワードが一致しません')
+            raise ValidationError('password does not match')
 
     def save(self, commit=False):
         user = super().save(commit=False)
@@ -43,4 +43,4 @@ class UserChangeForm(forms.ModelForm):
 
 class UserLoginForm(forms.Form):
     username = forms.CharField(label='username')
-    password = forms.CharField(label='passowrd')
+    password = forms.CharField(label='passowrd', widget=forms.PasswordInput())

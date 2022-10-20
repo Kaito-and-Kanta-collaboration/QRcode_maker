@@ -22,7 +22,7 @@ class UserModelTest(TestCase):
         self.assertEqual(super_user.username, 'superuser')
         self.assertTrue(super_user.is_superuser)
 
-    def test_raises_error_when_username_are_not_duplicate(self):
+    def test_raises_error_when_username_are_duplicate(self):
         error_user = User(username='testuser', password='testuser')
         with self.assertRaises(IntegrityError):
             error_user.save()
