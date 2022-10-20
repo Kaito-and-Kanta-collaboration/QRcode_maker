@@ -11,7 +11,7 @@
                 <a class="btn btn-outline-warning" href="{% url 'accounts:logout' %}">Logout</a>
             {% else %}
                 <a class="btn btn-outline-success me-3" href="{% url 'accounts:login' %}">Login</a>
-                <a class="btn btn-outline-primary">Signup</a>    
+                <a class="btn btn-outline-primary" href="{% url 'accounts:signup' %}">Signup</a>
             {% endif %}
         </div>
     </div>
