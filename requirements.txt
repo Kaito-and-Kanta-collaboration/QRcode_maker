@@ -1,5 +1,5 @@
 Django>=3.0,<4.0
 psycopg2>=2.8
 coverage>=6.3
-pyqrcode
-pypng
+pyqrcode==1.2.1
+pypng==0.20220715.0
