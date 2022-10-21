@@ -11,7 +11,6 @@ class CreateQRCodeForm(forms.ModelForm):
         'class': 'form-control form-control-lg', 
         'placeholder': 'Enter URL or Message', 
         'type': 'text',
-        'aria-label': '.form-control-lg',
         }))
         
     name = forms.CharField(
@@ -19,7 +18,6 @@ class CreateQRCodeForm(forms.ModelForm):
         'class': 'form-control', 
         'placeholder': 'Enter URL or Message', 
         'type': 'text',
-        'aria-label': 'default input',
         }))
 
 
