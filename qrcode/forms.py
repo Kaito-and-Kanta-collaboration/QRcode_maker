@@ -5,7 +5,7 @@ from accounts.models import User
 from .models import QRCode
 
 
-class CreateQRCodeForm(forms.ModelForm):
+class QrcodeCreateForm(forms.ModelForm):
     url_or_message = forms.CharField(
         widget=forms.TextInput(attrs={
         'class': 'form-control form-control-lg', 
