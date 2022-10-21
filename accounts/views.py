@@ -52,8 +52,6 @@ class UserSignupView(FormView):
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('qrcode:home')
-            else:
-                return render(request, 'accounts/accounts_signup.html', {'form': form})
+            login(request, user)
+            return redirect('qrcode:home')
+        return render(request, 'accounts/accounts_signup.html', {'form': form})
