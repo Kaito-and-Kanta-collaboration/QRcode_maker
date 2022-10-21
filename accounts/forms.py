@@ -9,8 +9,21 @@ User = get_user_model()
 
 
 class UserCreationForm(forms.ModelForm):
-    password = forms.CharField(label='password', widget=forms.PasswordInput())
-    confirm_password = forms.CharField(label='confirm password', widget=forms.PasswordInput())
+    username = forms.CharField(label='username', widget=forms.TextInput(attrs={
+        'class': 'form-control', 
+        'placeholder': 'name@example.com', 
+        'id': 'floatingInput'
+        }))
+    password = forms.CharField(label='password', widget=forms.PasswordInput(attrs={
+        'class': 'form-control', 
+        'placeholder': 'Password',
+        'id': 'floatingPassword',
+        }))
+    confirm_password = forms.CharField(label='confirm password', widget=forms.PasswordInput(attrs={
+        'class': 'form-control', 
+        'placeholder': 'Confirm Password',
+        'id': 'floatingPassword',
+        }))
 
     class Meta:
         model = User 
@@ -42,5 +55,13 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(label='username')
-    password = forms.CharField(label='passowrd', widget=forms.PasswordInput())
+    username = forms.CharField(label='username', widget=forms.TextInput(attrs={
+        'class': 'form-control', 
+        'placeholder': 'name@example.com', 
+        'id': 'floatingInput'
+        }))
+    password = forms.CharField(label='password', widget=forms.PasswordInput(attrs={
+        'class': 'form-control', 
+        'placeholder': 'Password',
+        'id': 'floatingPassword',
+        }))

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 <title>QRCode Maker Login</title>
@@ -6,11 +7,50 @@
 
 
 {% block content %}
+<!-- Container START -->
+<div class="container">
+  <div class="row justify-content-center align-items-center vh-100 py-5">
+      <!-- Main content START -->
+      <div class="col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+      <div class="text-center">
+          <img class="mb-4" src="{% static 'images/QRCode_Maker.png' %}" alt="QRCode_Maker" width="130" height="130">
+      </div>
+      <!-- Login START -->
+      <div class="card card-body rounded-3 p-4 p-sm-5">
+          <div class="text-center">
+          <h2 class="mb-2">Login</h2>
+          <span class="d-block">You don't have account?<a href="{% url 'accounts:signup' %}"> create a account</a></span>
+          </div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary">Login</button>
-</form>
+          <!-- Form Start-->
+          <form method="post" class="mt-4">
+              {{ form.non_field_errors }}
+              {% csrf_token %}
+
+              <div class="form-floating">
+                  {{ form.username }}
+                  <label for="floatingInput">Enter email</label>
+              </div>
+              {{ form.username.errors }}
+
+              <div class="form-floating">
+                  {{ form.password }}
+                  <label for="floatingPassword">Enter password</label>
+              </div>
+              {{ form.password.errors }}
+
+              <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary">Login</button></div>
+
+              <p class="mb-0 mt-3 text-center">©2022 <a href="https://twitter.com/itokun6317">Kaito</a>&<a href="https://twitter.com/kanta_engineer">Kanta</a> All rights reserved</p>
+          </form>
+          <!-- Form END -->
+      </div>
+      <!-- Login END -->
+      </div>
+  </div>
+  <!-- Row END-->
+</div>
+<!-- Container END -->
+
 
 {% endblock content %}
