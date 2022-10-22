@@ -16,3 +16,10 @@ class QRCode(models.Model):
     class Meta:
         db_table = 'qrcode'
         verbose_name_plural = 'QRCode'
+
+    def create_qrcode(self, url_or_message, name):
+        import pyqrcode
+        import pypng
+
+        qrcode = pyqrcode.create(url_or_message)
+        # 3.9.12

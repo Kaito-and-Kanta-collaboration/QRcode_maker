@@ -1,15 +1,15 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import FormView
 
-from .forms import CreateQRCodeForm
+from .forms import QrcodeCreateForm
 
 
-def create_and_show_qrcode_view(request):
-    qrcode_form = CreateQRCodeForm(request.POST or None)
-    if qrcode_form.is_valid():
-        qrcode_form.instance.user = request.user
-        qrcode_form.save()
-        return redirect('qrcode:home')
-    return render(request, 'home.html', context={'create_qrcode_form': qrcode_form})
+class QrcodeCreateView(FormView):
+    template_name = 'home.html'
+    form_class = QrcodeCreateForm
+
+    def get(self, request):
+        qrcode_form = QrcodeCreateForm()
+        return render(request, 'home.html', context={'create_qrcode_form': qrcode_form})
     
-    
+    # def post(self, request):
