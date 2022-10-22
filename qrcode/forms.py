@@ -10,16 +10,14 @@ class CreateQRCodeForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
         'class': 'form-control form-control-lg', 
         'placeholder': 'Enter URL or Message', 
-        'type': 'test',
-        'aria-label': '.form-control-lg',
+        'type': 'text',
         }))
         
     name = forms.CharField(
         widget=forms.TextInput(attrs={
         'class': 'form-control', 
         'placeholder': 'Enter URL or Message', 
-        'type': 'test',
-        'aria-label': 'default input',
+        'type': 'text',
         }))
 
 
