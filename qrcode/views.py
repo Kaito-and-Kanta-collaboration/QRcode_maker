@@ -1,17 +1,23 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.views.generic.edit import FormView
+from django.views.generic.edit import CreateView
+
+from .forms import QrcodeCreateForm
+from .models import QRCode
 
 
-from .forms import CreateQRCodeForm
+class QrcodeCreateView(CreateView):
+    template_name = 'home.html'
+    form_class = QrcodeCreateForm
 
+    def get(self, request):
+        qrcode_form = QrcodeCreateForm()
+        return render(request, 'home.html', context={'create_qrcode_form': qrcode_form})
 
-def create_and_show_qrcode_view(request):
-    qrcode_form = CreateQRCodeForm(request.POST or None)
-    if qrcode_form.is_valid():
-        qrcode_form.instance.user = request.user
-        qrcode_form.save()
+    def post(self, request):
+        qrcode_form = QrcodeCreateForm(request.POST)
+        if qrcode_form.is_valid():
+            url_or_message = qrcode_form.cleaned_data['url_or_message']
+            name = qrcode_form.cleaned_data['name']
+            QRCode.create_qrcode(self, url_or_message=url_or_message, name=name)
+            return render(request, 'home.html', context={'create_qrcode_form': qrcode_form})
         return redirect('qrcode:home')
-    return render(request, 'home.html', context={'create_qrcode_form': qrcode_form})
-    
-    

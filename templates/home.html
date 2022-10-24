@@ -11,41 +11,35 @@
             <h1 class="display-5 fw-normal" style="text-align:center; margin-bottom:10px;">Make Your Own QRCode.</h1>
             <p style="text-align:center; margin-bottom:150px; font-weight:40px;">You can name your qrcode and look back at it at any time!</p>
             <!-- Form Start-->
-            <form method="post" class="mt-4">
-                {{ create_qrcode_form.non_field_errors }}
-                {% csrf_token %}
+            {% if user.is_authenticated %}
+                <form method="post" class="mt-4">
+                    {{ create_qrcode_form.non_field_errors }}
+                    {% csrf_token %}
 
-                {% if user.is_authenticated %}
-                <!-- URLかMessageを入力　-->
-                <div class="form-floating mb-3">
-                    {{ create_qrcode_form.url_or_message }}
-                    <label for="floatingInput">Enter URL or Message</label>
+                    <!-- QRCodeのurl_or_message入力 -->
+                    <div class="form-floating mb-3">
+                        {{ create_qrcode_form.url_or_message }}
+                        <label for="floatingInput">Enter URL or Message</label>
+                    </div>
+                    {{ create_qrcode_form.url_or_message.errors }}
+    
+                    <!-- QRCodeのName入力 -->
+                    <div class="form-floating mb-5">
+                        {{ create_qrcode_form.name }}
+                        <label for="floatingPassword">Enter QRCode name</label>
+                    </div>
+                    {{ create_qrcode_form.name.errors }}
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-lg btn-primary">Create QRCode</button>
+                    </div>
+                </form>
+            {% else %}
+                <div class="d-flex justify-content-center">
+                    <p class="h3">
+                        <a href="{% url 'accounts:login' %}">Login</a> to make your own QRcode
+                    </p>
                 </div>
-                {{ create_qrcode_form.url_or_message.errors }}
-
-                <!-- QRCodeのName入力 -->
-                <div class="form-floating mb-5">
-                    {{ create_qrcode_form.name }}
-                    <label for="floatingPassword">Enter QRCode name</label>
-                </div>
-                {{ create_qrcode_form.name.errors }}
-
-                {% else %}
-                <!-- URLかMessageを入力　-->
-                <div class="form-floating mb-3">
-                    <input class="form-control form-control-lg" type="text" placeholder="Enter QRCode or Message">
-                    <label for="floatingInput">Enter URL or Message</label>
-                </div>
-
-                <!-- QRCodeのName入力 -->
-                <div class="form-floating mb-5">
-                    <input class="form-control" type="text" placeholder="Enter QRCode Name">
-                    <label for="floatingPassword">Enter QRCode name</label>
-                </div>
-
-                {% endif %}
-                <div class="d-grid"><button type="submit" class="btn btn-lg btn-primary">Create QRCode</button></div>
-            </form>
+            {% endif %}
             <!-- Form END -->
         </div>
     </div>

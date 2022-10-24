@@ -19,7 +19,7 @@
       <div class="card card-body rounded-3 p-4 p-sm-5">
           <div class="text-center">
           <h2 class="mb-2">Login</h2>
-          <span class="d-block">You don't have account?<a href="{% url 'accounts:signup' %}"> create a account</a></span>
+          <span class="d-block">You don't have account?<a href="{% url 'accounts:signup' %}"> create an account</a></span>
           </div>
 
           <!-- Form Start-->
@@ -27,13 +27,13 @@
               {{ form.non_field_errors }}
               {% csrf_token %}
 
-              <div class="form-floating">
+              <div class="form-floating mb-3">
                   {{ form.username }}
-                  <label for="floatingInput">Enter email</label>
+                  <label for="floatingInput">Enter username</label>
               </div>
               {{ form.username.errors }}
 
-              <div class="form-floating">
+              <div class="form-floating mb-3">
                   {{ form.password }}
                   <label for="floatingPassword">Enter password</label>
               </div>
