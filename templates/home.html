@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 <title>QRCode Maker Home</title>
@@ -9,7 +10,8 @@
     <div class=" p-5 rounded">
         <div class="col-sm-8 py-5 mx-auto">
             <h1 class="display-5 fw-normal" style="text-align:center; margin-bottom:10px;">Make Your Own QRCode.</h1>
-            <p style="text-align:center; margin-bottom:150px; font-weight:40px;">You can name your qrcode and look back at it at any time!</p>
+            <p style="text-align:center; margin-bottom:150px; font-weight:40px;">You can make your qrcode and look back at it at any time!</p>            {% for qrcode in QRCode %}
+            {% endfor %}
             <!-- Form Start-->
             {% if user.is_authenticated %}
                 <form method="post" class="mt-4">
@@ -36,11 +38,18 @@
             {% else %}
                 <div class="d-flex justify-content-center">
                     <p class="h3">
-                        <a href="{% url 'accounts:login' %}">Login</a> to make your own QRcode
+                        <a href="{% url 'accounts:login' %}">Login</a> to make your own QRCode
                     </p>
                 </div>
             {% endif %}
             <!-- Form END -->
+            
+
+            {% if show_qrcode %}
+            <div class="text-center">
+                <img class="mb-4" src="{{ show_qrcode.qrcode_images.url }}" alt="created_qrcode" width="400" height="400">
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
