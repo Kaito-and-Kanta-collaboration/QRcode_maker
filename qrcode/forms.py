@@ -20,7 +20,15 @@ class QrcodeCreateForm(forms.ModelForm):
         'type': 'text',
         }))
 
-
     class Meta:
         model = QRCode
         fields = ['url_or_message', 'name']
+
+    def create_qrcode(self, url_or_message, name):
+        import pyqrcode
+
+        qrcode_name = name + '.png'
+        created_qrcode = pyqrcode.create(url_or_message)
+        created_qrcode.png(qrcode_name, scale=10)
+
+        return qrcode_name

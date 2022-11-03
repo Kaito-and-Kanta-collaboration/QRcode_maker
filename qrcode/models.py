@@ -20,9 +20,4 @@ class QRCode(models.Model):
     def __str__(self):
         return self.name
 
-    # def create_qrcode(self, url_or_message, name):
-    #     import pyqrcode
-
-    #     qrcode = pyqrcode.create(url_or_message)
-    #     qrcode.png(f'{name}.png', scale=5)
-    #     print(qrcode.terminal())
+    
