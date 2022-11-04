@@ -2,14 +2,19 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'qrcode:home' %}">QRCode Maker</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="">My QRCode</a>
-                </li>
-            </ul>
             {% if user.is_authenticated %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'qrcode:user_qrcode_list' user.username %}">My QRCode</a>
+                    </li>
+                </ul>
                 <a class="btn btn-outline-warning" href="{% url 'accounts:logout' %}">Logout</a>
             {% else %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:login' %}">My QRCode</a>
+                    </li>
+                </ul>
                 <a class="btn btn-outline-success me-3" href="{% url 'accounts:login' %}">Login</a>
                 <a class="btn btn-outline-primary" href="{% url 'accounts:signup' %}">Signup</a>
             {% endif %}
