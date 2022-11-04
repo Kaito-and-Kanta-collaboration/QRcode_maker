@@ -4,13 +4,14 @@ from django.shortcuts import redirect, render
 from django.core.files import File
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 from accounts.models import User
 
 from .forms import QrcodeCreateForm
 from .models import QRCode
 
-
+@login_required
 def create_qrcode(request):
     create_qrcode_form = QrcodeCreateForm(request.POST or None)
     if create_qrcode_form.is_valid():
