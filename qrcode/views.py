@@ -19,7 +19,8 @@ def create_qrcode(request):
         with open(qrcode_name, 'rb') as destination_file:
             create_qrcode_form.instance.qrcode_images.save(qrcode_name, File(destination_file), save=False)
 
-        os.remove(qrcode_name) # Delete created image on base directory
+        # Delete created image on base directory
+        os.remove(qrcode_name) 
         
         create_qrcode_form.save()
 
