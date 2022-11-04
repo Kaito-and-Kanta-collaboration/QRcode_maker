@@ -2,6 +2,10 @@ import os
 
 from django.shortcuts import redirect, render
 from django.core.files import File
+from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from accounts.models import User
 
 from .forms import QrcodeCreateForm
 from .models import QRCode
@@ -37,3 +41,11 @@ def create_qrcode(request):
     return render(
         request, 'home.html',{ 'create_qrcode_form': create_qrcode_form,}
     )
+    
+
+
+class UserQrcodeList(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'qrcode/user_qrcode_list.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
