@@ -1,10 +1,12 @@
 import os
 
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.core.files import File
 from django.views.generic.detail import DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,  UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404  
+from django.http import JsonResponse
 
 from accounts.models import User
 
@@ -43,6 +45,17 @@ def create_qrcode(request):
     return render(
         request, 'home.html',{ 'create_qrcode_form': create_qrcode_form,}
     )
+    
+
+class CheckForUserMatchMixin(LoginRequiredMixin, UserPassesTestMixin):
+    def test_func(self):
+        target_qrcode = get_object_or_404(QRCode, pk=self.kwargs['pk'])
+        return self.request.user == target_qrcode.user
+        
+    def handle_no_permission(self):
+        return JsonResponse(
+            {'message': 'Only user who made this qrcode have access to this view'}
+        )
 
 
 class UserQrcodeList(LoginRequiredMixin, DetailView):
@@ -54,10 +67,14 @@ class UserQrcodeList(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['qrcode_list'] = QRCode.objects.filter(user=self.object).all()
+        if self.request.user == self.object:
+            context['have_the_right_of_access'] = True
+        else:
+            context['have_the_right_of_access'] = False
         return context
     
     
-class UserQrcodeDetail(DetailView):
+class UserQrcodeDetail(CheckForUserMatchMixin, DetailView):
     model = QRCode
     template_name = 'qrcode/qrcode_detail.html'
     

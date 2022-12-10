@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block content %}
+{% if have_the_right_of_access %}
 <table class="table">
     <thead>
         <tr>
@@ -35,4 +36,7 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>Only user who made this qrcode have access to this view</p>
+{% endif %}
 {% endblock %}  
