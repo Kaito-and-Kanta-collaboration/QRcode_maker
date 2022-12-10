@@ -15,7 +15,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Url / Message</th>
+            <th scope="col">URL / Message</th>
             <th scope="col">Created_at</th>
         </tr>
         </thead>
@@ -23,7 +23,7 @@
         {% for qrcode in qrcode_list %}
         <tr>
             <th scope="row">{{ forloop.counter }}</th>
-            <td><a href="" style="text-decoration:none;">{{ qrcode.name }}</a></td>
+            <td><a href="{% url 'qrcode:qrcode_detail' qrcode.id %}" style="text-decoration:none;">{{ qrcode.name }}</a></td>
             <td>{{ qrcode.url_or_message }}</td>
             <td>{{ qrcode.created_at }}</td>
         </tr>

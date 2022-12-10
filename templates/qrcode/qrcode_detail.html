@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>My QRCode Detail</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class=" p-5 rounded">
+        <div class="col-sm-8 py-5 mx-auto">
+            <!-- Form Start-->
+            <form method="post" class="mt-4">
+
+                <!-- QRCodeのurl_or_message -->
+                <input class="form-control form-control-lg" style="margin-bottom:20px;" type="text" value="{{ object.url_or_message }}" aria-label="{{ object.url_or_message }}" disabled readonly>
+    
+                <!-- QRCodeのName -->
+                <input class="form-control form-control-lg" style="margin-bottom:20px;" type="text" value="{{ object.name }}" aria-label="{{ object.name }}" disabled readonly>
+
+                <!-- QRCodeの作成日 -->
+                <input class="form-control form-control-lg" style="margin-bottom:20px;" type="text" value="{{ object.created_at }}" aria-label="{{ object.created_at }}" disabled readonly>
+            </form>     
+            <!-- Form END -->
+            
+
+            <div class="text-center">
+                <img class="mb-4" src="{{ qrcode.qrcode_images.url }}" alt="created_qrcode" width="400" height="400">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}  

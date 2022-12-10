@@ -11,6 +11,7 @@ from accounts.models import User
 from .forms import QrcodeCreateForm
 from .models import QRCode
 
+
 @login_required
 def create_qrcode(request):
     create_qrcode_form = QrcodeCreateForm(request.POST or None)
@@ -42,7 +43,6 @@ def create_qrcode(request):
     return render(
         request, 'home.html',{ 'create_qrcode_form': create_qrcode_form,}
     )
-    
 
 
 class UserQrcodeList(LoginRequiredMixin, DetailView):
@@ -55,3 +55,9 @@ class UserQrcodeList(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['qrcode_list'] = QRCode.objects.filter(user=self.object).all()
         return context
+    
+    
+class UserQrcodeDetail(DetailView):
+    model = QRCode
+    template_name = 'qrcode/qrcode_detail.html'
+    
