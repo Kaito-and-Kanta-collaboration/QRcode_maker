@@ -6,8 +6,11 @@ __pycache__
 db.sqlite3
 media
 
-#data
+# data
 data/
+
+# READE.me file
+READE.me
 
 # Backup files # 
 *.bak 
