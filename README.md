@@ -1,4 +1,4 @@
-# QRCodeMaker
+# QRCode Maker
 You can make your qrcode and look back at it at any time!
 
 ## What we can do?
@@ -8,7 +8,7 @@ Second, by creating your own account, you can manage the QRCode you have created
 
 ## Setup
 
-Gitからコードをクローン
+GitHubからコードをクローン
 ```
 git clone https://github.com/Kaito-and-Kanta-collaboration/QRcode_maker.git
 ```
