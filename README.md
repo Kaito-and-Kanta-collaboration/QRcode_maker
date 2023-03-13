@@ -8,7 +8,7 @@ Second, by creating your own account, you can manage the QRCode you have created
 
 ## Setup
 
-GitHubからコードをクローン
+GitHubからソースコードをクローン
 ```
 git clone https://github.com/Kaito-and-Kanta-collaboration/QRcode_maker.git
 ```
