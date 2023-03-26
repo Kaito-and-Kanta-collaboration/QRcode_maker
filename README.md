@@ -28,6 +28,11 @@ Dockerコンテナ内のBashシェルを起動
 docker exec -it docker /bin/bash
 ```
 
+Docker 停止
+```
+docker-compose down
+```
+
 ## Authors
 [Kaito Misukami](https://github.com/KaitoMizukami)\
 [Kanta Nakamura](https://github.com/KantaNakamura)
