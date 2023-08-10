@@ -1,5 +1,5 @@
 # QRCode Maker
-You can make your QRCode and look back at it at any time!
+You can make your QRCode and look back at it at any time
 
 ## What we can do?
 There are two main things you can do in this app!\
